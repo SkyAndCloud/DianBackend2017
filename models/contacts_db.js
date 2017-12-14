@@ -19,26 +19,5 @@ MongoClient.connect(ConfigSet.DATABASE_URL, (err, client) => {
 })
 
 exports.addContact = async function(params) {
-    let collection = db.collection(ConfigSet.COLLECTION_NAME);
-    let data = await collection.insert(params);
-    return data.ops[0];
-}
-
-exports.deleteContact = async function(params) {
-    let collection = db.collection(ConfigSet.COLLECTION_NAME);
-    let data = await collection.findOneAndDelete({_id: new MongoDB.ObjectID(params.contact_id)});
-    return data.value;
-}
-
-exports.queryAllContacts = async function(params) {
-    let collection = db.collection(ConfigSet.COLLECTION_NAME);
-    return await collection.find({}).toArray();
-}
-
-exports.updateContact = async function(params) {
-    let collection = db.collection(ConfigSet.COLLECTION_NAME);
-    let contact_id = params.contact_id;
-    delete params.contact_id;
-    let data = await collection.findOneAndUpdate({_id: new MongoDB.ObjectID(contact_id)}, params, {returnOriginal: false});
-    return data.value;
+    // TODO
 }
